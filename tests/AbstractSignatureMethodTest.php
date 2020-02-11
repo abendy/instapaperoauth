@@ -1,8 +1,8 @@
 <?php
 
-namespace Abraham\TwitterOAuth\Tests;
+namespace Abendy\InstapaperOauth\Tests;
 
-use Abraham\TwitterOAuth\SignatureMethod;
+use Abendy\InstapaperOauth\SignatureMethod;
 
 abstract class AbstractSignatureMethodTest extends \PHPUnit_Framework_TestCase
 {
@@ -30,21 +30,21 @@ abstract class AbstractSignatureMethodTest extends \PHPUnit_Framework_TestCase
 
     protected function getRequest()
     {
-        return $this->getMockBuilder('Abraham\TwitterOAuth\Request')
+        return $this->getMockBuilder('Abendy\InstapaperOauth\Request')
             ->disableOriginalConstructor()
             ->getMock();
     }
 
     protected function getConsumer($key = null, $secret = null, $callbackUrl = null)
     {
-        return $this->getMockBuilder('Abraham\TwitterOAuth\Consumer')
+        return $this->getMockBuilder('Abendy\InstapaperOauth\Consumer')
             ->setConstructorArgs([$key, $secret, $callbackUrl])
             ->getMock();
     }
 
     protected function getToken($key = null, $secret = null)
     {
-        return $this->getMockBuilder('Abraham\TwitterOAuth\Token')
+        return $this->getMockBuilder('Abendy\InstapaperOauth\Token')
             ->setConstructorArgs([$key, $secret])
             ->getMock();
     }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Abraham\TwitterOAuth\Tests;
+namespace Abendy\InstapaperOauth\Tests;
 
-use Abraham\TwitterOAuth\Consumer;
+use Abendy\InstapaperOauth\Consumer;
 
 class ConsumerTest extends \PHPUnit_Framework_TestCase {
     public function testToString()

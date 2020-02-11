@@ -4,16 +4,16 @@
  *
  * @license MIT
  */
-namespace Abraham\TwitterOAuth;
+namespace Abendy\InstapaperOauth;
 
-use Abraham\TwitterOAuth\Util\JsonDecoder;
+use Abendy\InstapaperOauth\Util\JsonDecoder;
 
 /**
- * TwitterOAuth class for interacting with the Twitter API.
+ * InstapaperOauth class for interacting with the Twitter API.
  *
  * @author Abraham Williams <abraham@abrah.am>
  */
-class TwitterOAuth extends Config
+class InstapaperOauth extends Config
 {
     const API_VERSION = '1.1';
     const API_HOST = 'https://www.instapaper.com/api/' . self::API_VERSION;
@@ -124,7 +124,7 @@ class TwitterOAuth extends Config
      * @param array  $parameters
      *
      * @return array
-     * @throws TwitterOAuthException
+     * @throws InstapaperOauthException
      */
     public function oauth($path, array $parameters = [])
     {
@@ -135,7 +135,7 @@ class TwitterOAuth extends Config
         $result = $this->oAuthRequest($url, 'POST', $parameters);
 
         if ($this->getLastHttpCode() != 200) {
-            throw new TwitterOAuthException($result);
+            throw new InstapaperOauthException($result);
         }
 
         parse_str($result, $response);
@@ -335,7 +335,7 @@ class TwitterOAuth extends Config
      * @param array  $parameters
      *
      * @return string
-     * @throws TwitterOAuthException
+     * @throws InstapaperOauthException
      */
     private function oAuthRequest($url, $method, array $parameters)
     {
@@ -367,7 +367,7 @@ class TwitterOAuth extends Config
      * @param array $postfields
      *
      * @return string
-     * @throws TwitterOAuthException
+     * @throws InstapaperOauthException
      */
     private function request($url, $method, $authorization, array $postfields)
     {
@@ -429,7 +429,7 @@ class TwitterOAuth extends Config
 
         // Throw exceptions on cURL errors.
         if (curl_errno($curlHandle) > 0) {
-            throw new TwitterOAuthException(curl_error($curlHandle), curl_errno($curlHandle));
+            throw new InstapaperOauthException(curl_error($curlHandle), curl_errno($curlHandle));
         }
 
         $this->response->setHttpCode(curl_getinfo($curlHandle, CURLINFO_HTTP_CODE));

@@ -1,8 +1,8 @@
 <?php
 
-namespace Abraham\TwitterOAuth\Tests;
+namespace Abendy\InstapaperOauth\Tests;
 
-use Abraham\TwitterOAuth\Token;
+use Abendy\InstapaperOauth\Token;
 
 class TokenTest extends \PHPUnit_Framework_TestCase {
     /**

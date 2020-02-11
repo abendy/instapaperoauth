@@ -4,7 +4,7 @@
         bootstrap="tests/bootstrap.php">
 
     <testsuites>
-        <testsuite name="TwitterOAuth Test Suite">
+        <testsuite name="InstapaperOauth Test Suite">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>

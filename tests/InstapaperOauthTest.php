@@ -2,18 +2,18 @@
 /**
  * WARNING: Running these tests will post and delete through the actual Twitter account.
  */
-namespace Abraham\TwitterOAuth\Test;
+namespace Abendy\InstapaperOauth\Test;
 
-use Abraham\TwitterOAuth\TwitterOAuth;
+use Abendy\InstapaperOauth\InstapaperOauth;
 
-class TwitterOAuthTest extends \PHPUnit_Framework_TestCase
+class InstapaperOauthTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var TwitterOAuth */
+    /** @var InstapaperOauth */
     protected $twitter;
 
     protected function setUp()
     {
-        $this->twitter = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
+        $this->twitter = new InstapaperOauth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
     }
 
     public function testBuildClient()
@@ -24,7 +24,7 @@ class TwitterOAuthTest extends \PHPUnit_Framework_TestCase
 
     public function testSetOauthToken()
     {
-        $twitter = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET);
+        $twitter = new InstapaperOauth(CONSUMER_KEY, CONSUMER_SECRET);
         $twitter->setOauthToken(ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
         $this->assertObjectHasAttribute('consumer', $twitter);
         $this->assertObjectHasAttribute('token', $twitter);
@@ -34,7 +34,7 @@ class TwitterOAuthTest extends \PHPUnit_Framework_TestCase
 
     public function testOauth2Token()
     {
-        $twitter = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET);
+        $twitter = new InstapaperOauth(CONSUMER_KEY, CONSUMER_SECRET);
         $result = $twitter->oauth2('oauth2/token', ['grant_type' => 'client_credentials']);
         $this->assertEquals(200, $twitter->getLastHttpCode());
         $this->assertObjectHasAttribute('token_type', $result);
@@ -48,7 +48,7 @@ class TwitterOAuthTest extends \PHPUnit_Framework_TestCase
      */
     public function testBearerToken($accessToken)
     {
-        $twitter = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, null, $accessToken->access_token);
+        $twitter = new InstapaperOauth(CONSUMER_KEY, CONSUMER_SECRET, null, $accessToken->access_token);
         $result = $twitter->get('statuses/user_timeline', ['screen_name' => 'twitterapi']);
         if ($twitter->getLastHttpCode() !== 200) {
             $this->assertEquals('foo', substr($accessToken->access_token, 0, 75));
@@ -64,7 +64,7 @@ class TwitterOAuthTest extends \PHPUnit_Framework_TestCase
     //  */
     // public function testOauth2TokenInvalidate($accessToken)
     // {
-    //     $twitter = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET);
+    //     $twitter = new InstapaperOauth(CONSUMER_KEY, CONSUMER_SECRET);
     //     // HACK: access_token is already urlencoded but gets urlencoded again breaking the invalidate request.
     //     $result = $twitter->oauth2(
     //         'oauth2/invalidate_token',
@@ -77,7 +77,7 @@ class TwitterOAuthTest extends \PHPUnit_Framework_TestCase
 
     public function testOauthRequestToken()
     {
-        $twitter = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET);
+        $twitter = new InstapaperOauth(CONSUMER_KEY, CONSUMER_SECRET);
         $result = $twitter->oauth('oauth/request_token', ['oauth_callback' => OAUTH_CALLBACK]);
         $this->assertEquals(200, $twitter->getLastHttpCode());
         $this->assertArrayHasKey('oauth_token', $result);
@@ -88,25 +88,25 @@ class TwitterOAuthTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Abraham\TwitterOAuth\TwitterOAuthException
+     * @expectedException \Abendy\InstapaperOauth\InstapaperOauthException
      * @expectedExceptionMessage Could not authenticate you
      */
     public function testOauthRequestTokenException()
     {
-        $twitter = new TwitterOAuth('CONSUMER_KEY', 'CONSUMER_SECRET');
+        $twitter = new InstapaperOauth('CONSUMER_KEY', 'CONSUMER_SECRET');
         $result = $twitter->oauth('oauth/request_token', ['oauth_callback' => OAUTH_CALLBACK]);
         return $result;
     }
 
     /**
-     * @expectedException \Abraham\TwitterOAuth\TwitterOAuthException
+     * @expectedException \Abendy\InstapaperOauth\InstapaperOauthException
      * @expectedExceptionMessage Invalid oauth_verifier parameter
      * @depends testOauthRequestToken
      */
     public function testOauthAccessTokenTokenException(array $requestToken)
     {
         // Can't test this without a browser logging into Twitter so check for the correct error instead.
-        $twitter = new TwitterOAuth(
+        $twitter = new InstapaperOauth(
             CONSUMER_KEY,
             CONSUMER_SECRET,
             $requestToken['oauth_token'],

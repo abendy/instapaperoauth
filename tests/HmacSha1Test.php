@@ -1,8 +1,8 @@
 <?php
 
-namespace Abraham\TwitterOAuth\Tests;
+namespace Abendy\InstapaperOauth\Tests;
 
-use Abraham\TwitterOAuth\HmacSha1;
+use Abendy\InstapaperOauth\HmacSha1;
 
 class HmacSha1Test extends AbstractSignatureMethodTest
 {

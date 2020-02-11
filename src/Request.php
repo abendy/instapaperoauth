@@ -3,7 +3,7 @@
  * The MIT License
  * Copyright (c) 2007 Andy Smith
  */
-namespace Abraham\TwitterOAuth;
+namespace Abendy\InstapaperOauth;
 
 class Request
 {
@@ -192,7 +192,7 @@ class Request
      * Builds the Authorization: header
      *
      * @return string
-     * @throws TwitterOAuthException
+     * @throws InstapaperOauthException
      */
     public function toHeader()
     {
@@ -203,7 +203,7 @@ class Request
                 continue;
             }
             if (is_array($v)) {
-                throw new TwitterOAuthException('Arrays not supported in headers');
+                throw new InstapaperOauthException('Arrays not supported in headers');
             }
             $out .= ($first) ? ' ' : ', ';
             $out .= Util::urlencodeRfc3986($k) . '="' . Util::urlencodeRfc3986($v) . '"';

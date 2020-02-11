@@ -1,6 +1,6 @@
 <?php
 
-namespace Abraham\TwitterOAuth\Util;
+namespace Abendy\InstapaperOauth\Util;
 
 /**
  * @author louis <louis@systemli.org>

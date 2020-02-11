@@ -1,6 +1,6 @@
 <?php
 
-namespace Abraham\TwitterOAuth;
+namespace Abendy\InstapaperOauth;
 
 /**
  * The result of the most recent API request.

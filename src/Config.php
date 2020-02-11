@@ -1,9 +1,9 @@
 <?php
 
-namespace Abraham\TwitterOAuth;
+namespace Abendy\InstapaperOauth;
 
 /**
- * Handle setting and storing config for TwitterOAuth.
+ * Handle setting and storing config for InstapaperOauth.
  *
  * @author Abraham Williams <abraham@abrah.am>
  */

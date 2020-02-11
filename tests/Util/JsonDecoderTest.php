@@ -1,8 +1,8 @@
 <?php
 
-namespace Abraham\TwitterOAuth\Tests;
+namespace Abendy\InstapaperOauth\Tests;
 
-use Abraham\TwitterOAuth\Util\JsonDecoder;
+use Abendy\InstapaperOauth\Util\JsonDecoder;
 
 class JsonDecoderTest extends \PHPUnit_Framework_TestCase
 {
